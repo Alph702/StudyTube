@@ -1,0 +1,9 @@
+# Ignore virtual environments
+.venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+.idea/
+.vscode/
