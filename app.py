@@ -85,7 +85,7 @@ def fetch_videos(query, max_total=100):
             break
         params = {
             'part': 'snippet',
-            'q': query + ' Hindi',
+            'q': query,
             'type': 'video',
             'videoCategoryId': '27',
             'key': api_key,
@@ -134,14 +134,15 @@ def fetch_videos(query, max_total=100):
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    videos = fetch_videos('study motivation')
+    return render_template('index.html', videos=videos)
 
 
 @app.route('/search', methods=['POST'])
 def search():
     query = request.form['query']
     videos = fetch_videos(query)
-    return jsonify(videos)
+    return render_template('index.html', videos=videos)
 
 
 @app.route('/play/<video_id>')

@@ -2,102 +2,65 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StudyTube</title>
     <style>
         body {
             background-color: #121212;
-            color: #fff;
+            color: white;
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
         }
 
-        h1 {
-            text-align: center;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: none;
-            background-color: #333;
-            color: white;
-        }
-
-        button {
-            padding: 10px;
-            background-color: #1e90ff;
-            border: none;
-            border-radius: 5px;
-            color: white;
-            cursor: pointer;
-        }
-
-        .video-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
         .video-card {
-            background-color: #333;
+            background-color: #1e1e1e;
             margin: 10px;
             padding: 10px;
-            border-radius: 10px;
+            border-radius: 8px;
+            display: inline-block;
             width: 300px;
             text-align: center;
         }
 
         img {
-            width: 100%;
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            background-color: #333;
+            color: white;
+            border: none;
             border-radius: 5px;
         }
 
-        a {
-            color: #1e90ff;
-            text-decoration: none;
+        button:hover {
+            background-color: #555;
         }
     </style>
 </head>
 <body>
     <h1>StudyTube</h1>
-    <input type="text" id="search" placeholder="Search for study videos..." />
-    <button onclick="searchVideos()">Search</button>
-    <div class="video-list" id="videoList"></div>
-
-    <script>
-        async function searchVideos() {
-            const query = document.getElementById('search').value;
-            const response = await fetch('/search', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `query=${query}`
-            });
-
-            const videos = await response.json();
-            const videoList = document.getElementById('videoList');
-            videoList.innerHTML = '';
-
-            videos.forEach(video => {
-                const videoCard = document.createElement('div');
-                videoCard.classList.add('video-card');
-
-                videoCard.innerHTML = `
-                    <img src="${video.snippet.thumbnails.medium.url}" alt="${video.snippet.title}">
-                    <h3>${video.snippet.title}</h3>
-                    <p>${video.snippet.channelTitle}</p>
-                    <a href="/play/${video.videoId}" target="_blank">Watch Now</a>
-                    <p>Duration: ${Math.floor(video.duration / 60)}:${String(video.duration % 60).padStart(2, '0')}</p>
-                `;
-
-                videoList.appendChild(videoCard);
-            });
-        }
-    </script>
+    <form method="POST" action="/search">
+        <input type="text" name="query" placeholder="Search for videos..." required>
+        <button type="submit">Search</button>
+    </form>
+    <div id="videoList">
+        {% if videos %}
+            {% for video in videos %}
+                <div class="video-card">
+                    <img src="{{ video['snippet']['thumbnails']['medium']['url'] }}" alt="{{ video['snippet']['title'] }}">
+                    <h3>{{ video['snippet']['title'] }}</h3>
+                    <p>{{ video['snippet']['channelTitle'] }}</p>
+                    <a href="/play/{{ video['videoId'] }}">Watch Now</a>
+                    <p>Duration: {{ video['duration'] // 60 }}:{{ '%02d' % (video['duration'] % 60) }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No videos found.</p>
+        {% endif %}
+    </div>
 </body>
 </html>
