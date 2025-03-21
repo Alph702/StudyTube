@@ -3,28 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Video Player</title>
-    <style>
-        body {
-            background-color: #121212;
-            color: white;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            text-align: center;
-        }
-
-        iframe {
-            width: 80%;
-            height: 500px;
-            border: none;
-            border-radius: 8px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <h1>Video Player</h1>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video_id }}" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/{{ video_id }}" allowfullscreen></iframe>
     <br>
-    <a href="/">Back to Home</a>
+    <a href="/" class="back-link">Back to Home</a>
 </body>
 </html>

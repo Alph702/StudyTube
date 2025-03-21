@@ -1,0 +1,160 @@
+/* Base Styling */
+body {
+    background-color: #181818;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 24px;
+    margin: 20px;
+    color: #fff;
+}
+
+/* Search Bar */
+.search-bar {
+    background-color: #202020;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-bar input[type="text"] {
+    width: 40%;
+    padding: 10px;
+    margin-right: 5px;
+    background-color: #121212;
+    border: 1px solid #333;
+    color: white;
+    border-radius: 20px;
+}
+
+.search-bar button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-bar button:hover {
+    background-color: #555;
+}
+
+/* Video Grid */body {
+    font-family: Arial, sans-serif;
+    background-color: #181818;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+.video-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.video-card {
+    width: 360px;
+    background-color: #202020;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 10px;
+    transition: transform 0.2s;
+}
+
+.video-card:hover {
+    transform: scale(1.05);
+}
+
+.thumbnail-container {
+    position: relative;
+}
+
+.thumbnail {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+}
+
+.duration-badge {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.video-info {
+    display: flex;
+    align-items: flex-start;
+    padding: 12px;
+}
+
+.channel-logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+
+.video-details {
+    flex-grow: 1;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.title:hover {
+    color: #ddd;
+}
+
+.channel, .meta {
+    font-size: 14px;
+    color: #aaaaaa;
+    margin-top: 4px;
+}
+
+
+a {
+    color: #1e90ff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.video-details {
+    flex-grow: 1;
+}
+
+.title {
+    font-size: 16px;
+    margin: 4px 0;
+    font-weight: bold;
+    color: #e0e0e0;
+}
+
+.title:hover {
+    color: #ff0000;
+}

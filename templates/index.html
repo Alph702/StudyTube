@@ -1,66 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>StudyTube</title>
-    <style>
-        body {
-            background-color: #121212;
-            color: white;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .video-card {
-            background-color: #1e1e1e;
-            margin: 10px;
-            padding: 10px;
-            border-radius: 8px;
-            display: inline-block;
-            width: 300px;
-            text-align: center;
-        }
-
-        img {
-            max-width: 100%;
-            border-radius: 8px;
-        }
-
-        input, button {
-            padding: 10px;
-            margin: 5px;
-            background-color: #333;
-            color: white;
-            border: none;
-            border-radius: 5px;
-        }
-
-        button:hover {
-            background-color: #555;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
-    <h1>StudyTube</h1>
-    <form method="POST" action="/search">
-        <input type="text" name="query" placeholder="Search for videos..." required>
-        <button type="submit">Search</button>
-    </form>
-    <div id="videoList">
+    <div class="search-bar">
+        <h1>StudyTube</h1>
+        <form method="POST" action="/search">
+            <input type="text" name="query" placeholder="Search for videos..." required>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <div class="video-grid">
         {% if videos %}
-            {% for video in videos %}
-                <div class="video-card">
-                    <img src="{{ video['snippet']['thumbnails']['medium']['url'] }}" alt="{{ video['snippet']['title'] }}">
-                    <h3>{{ video['snippet']['title'] }}</h3>
-                    <p>{{ video['snippet']['channelTitle'] }}</p>
-                    <a href="/play/{{ video['videoId'] }}">Watch Now</a>
-                    <p>Duration: {{ video['duration'] // 60 }}:{{ '%02d' % (video['duration'] % 60) }}</p>
+        {% for video in videos %}
+        <div class="video-card">
+            <a href="/play/{{ video.videoId }}">
+                <div class="thumbnail-container">
+                    <img class="thumbnail" src="{{ video.snippet.thumbnails.high.url }}" alt="Thumbnail">
+                    <div class="duration-badge">{{ video.duration|int // 60 }}:{{ "%02d" % (video.duration|int % 60) }}
+                    </div>
                 </div>
-            {% endfor %}
+            </a>
+            <div class="video-info">
+                <img class="channel-logo" src="{{ video.channel_logo }}" alt="Channel Logo">
+
+                <div class="video-details">
+                    <p class="title">{{ video.snippet.title }}</p>
+                    <p class="channel">{{ video.snippet.channelTitle }}</p>
+                    <p class="meta">{{ video.views }} views • {{ video.published_date }} ago</p>
+
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
         {% else %}
-            <p>No videos found.</p>
+        <p>No videos found.</p>
         {% endif %}
     </div>
 </body>
+
 </html>
