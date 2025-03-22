@@ -30,12 +30,16 @@ StudyTube is a minimalist web application that allows users to search and watch 
    pip install -r requirements.txt
    ```
 
-3. Set up API Key:
+3. Set up API Keys:
 
    - Obtain your YouTube Data API v3 key from the Google Developer Console.
-   - Create a `.env` file and add your API key:
-     ```
-     API_KEY=your_api_key_here
+   - Create a `env.py` file and add your API keys:
+     ```python
+     YOUTUBE_API_KEYS = [
+        'YOUR_API_KEY_1',
+        'YOUR_API_KEY_2',
+        # Add more API keys as needed
+      ]
      ```
 
 4. Run the application:
