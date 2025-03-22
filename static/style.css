@@ -30,6 +30,7 @@ h1 {
     border: 1px solid #333;
     color: white;
     border-radius: 20px;
+    width: 50vw;
 }
 
 .search-bar button {
@@ -46,14 +47,7 @@ h1 {
     background-color: #555;
 }
 
-/* Video Grid */body {
-    font-family: Arial, sans-serif;
-    background-color: #181818;
-    margin: 0;
-    padding: 0;
-    color: white;
-}
-
+/* Video Grid */
 .video-grid {
     display: flex;
     flex-wrap: wrap;
@@ -157,4 +151,20 @@ a:hover {
 
 .title:hover {
     color: #ff0000;
+}
+
+.Player-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.Player {
+    width: 80%;
+    height: 80%;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
