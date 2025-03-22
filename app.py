@@ -1,8 +1,7 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request
 import re
 import asyncio
 import aiohttp
-from functools import lru_cache
 from datetime import datetime
 from env import *
 
@@ -177,4 +176,4 @@ def play_video(video_id):
     return render_template('player.html', video_id=video_id)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8080)
+    app.run()
